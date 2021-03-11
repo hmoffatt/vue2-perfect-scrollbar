@@ -6,7 +6,7 @@
 
   /*!
    * perfect-scrollbar v1.5.0
-   * Copyright 2020 Hyunje Jun, MDBootstrap and Contributors
+   * Copyright 2021 Hyunje Jun, MDBootstrap and Contributors
    * Licensed under MIT
    */
 
@@ -133,10 +133,8 @@
   };
 
   EventElement.prototype.unbindAll = function unbindAll () {
-    var this$1 = this;
-
-    for (var name in this$1.handlers) {
-      this$1.unbind(name);
+    for (var name in this.handlers) {
+      this.unbind(name);
     }
   };
 
@@ -331,8 +329,9 @@
     var roundedScrollTop = Math.floor(element.scrollTop);
     var rect = element.getBoundingClientRect();
 
-    i.containerWidth = Math.ceil(rect.width);
-    i.containerHeight = Math.ceil(rect.height);
+    i.containerWidth = Math.round(rect.width);
+    i.containerHeight = Math.round(rect.height);
+
     i.contentWidth = element.scrollWidth;
     i.contentHeight = element.scrollHeight;
 
@@ -1090,6 +1089,11 @@
             return;
           }
 
+          if (!i.element) {
+            clearInterval(easingLoop);
+            return;
+          }
+
           applyTouchMove(speed.x * 30, speed.y * 30);
 
           speed.x *= 0.8;
@@ -1139,8 +1143,6 @@
   };
 
   var PerfectScrollbar = function PerfectScrollbar(element, userSettings) {
-    var this$2 = this;
-
     var this$1 = this;
     if ( userSettings === void 0 ) { userSettings = {}; }
 
@@ -1158,7 +1160,7 @@
 
     this.settings = defaultSettings();
     for (var key in userSettings) {
-      this$2.settings[key] = userSettings[key];
+      this.settings[key] = userSettings[key];
     }
 
     this.containerWidth = null;
