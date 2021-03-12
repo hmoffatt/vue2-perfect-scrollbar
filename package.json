@@ -74,7 +74,7 @@
   },
   "dependencies": {
     "cssnano": "^4.1.3",
-    "perfect-scrollbar": "git+https://github.com/hmoffatt/perfect-scrollbar.git#bb07167",
+    "perfect-scrollbar": "git+https://github.com/hmoffatt/perfect-scrollbar.git#c7d3d68",
     "postcss-import": "^12.0.0"
   }
 }
